@@ -1,0 +1,2 @@
+# The daily market pipeline uses only the Python standard library.
+# Keep this file so GitHub Actions and future upgrades have a stable install step.

@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --ink: #191713;
+      --muted: #6d675c;
+      --line: #d8d0c3;
+      --panel: #fffaf0;
+      --panel-2: #ece6da;
+      --red: #c64232;
+      --green: #14866d;
+      --blue: #235d9f;
+      --gold: #a06d1a;
+      --shadow: 0 18px 50px rgba(39, 33, 24, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(25, 23, 19, .035) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(25, 23, 19, .03) 1px, transparent 1px),
+        var(--bg);
+      background-size: 32px 32px;
+      font-family: "Noto Serif SC", "Source Han Serif SC", "Microsoft YaHei", serif;
+    }
+
+    .shell {
+      width: min(1440px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 28px 0 48px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 20px;
+      padding: 24px 0 18px;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .kicker {
+      color: var(--gold);
+      font: 700 13px/1.2 "Microsoft YaHei", sans-serif;
+      letter-spacing: 0;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 72px);
+      line-height: .95;
+      letter-spacing: 0;
+    }
+
+    .stamp {
+      border: 2px solid var(--ink);
+      padding: 12px 14px;
+      min-width: 160px;
+      text-align: center;
+      background: var(--panel);
+      box-shadow: 6px 6px 0 var(--ink);
+      font-family: "Microsoft YaHei", sans-serif;
+    }
+
+    .stamp strong {
+      display: block;
+      font-size: 28px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .metrics {
+      grid-template-columns: repeat(6, minmax(130px, 1fr));
+    }
+
+    .layout {
+      grid-template-columns: 1.25fr .75fr;
+      align-items: start;
+    }
+
+    .panel {
+      background: rgba(255, 250, 240, .88);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .metric {
+      min-height: 118px;
+      border-top: 5px solid var(--ink);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .label {
+      color: var(--muted);
+      font: 700 13px/1.3 "Microsoft YaHei", sans-serif;
+    }
+
+    .value {
+      font: 800 clamp(25px, 2.4vw, 34px)/1.05 "Georgia", "Times New Roman", serif;
+      letter-spacing: 0;
+      margin-top: 14px;
+      overflow-wrap: anywhere;
+    }
+
+    .sub {
+      color: var(--muted);
+      font: 13px/1.5 "Microsoft YaHei", sans-serif;
+      margin-top: 8px;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 22px;
+      line-height: 1.2;
+      letter-spacing: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    h2 span {
+      color: var(--muted);
+      font: 13px/1 "Microsoft YaHei", sans-serif;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border-top: 1px solid var(--line);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: "Microsoft YaHei", sans-serif;
+      font-size: 13px;
+      min-width: 520px;
+    }
+
+    th, td {
+      padding: 10px 8px;
+      border-bottom: 1px solid var(--line);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    th:first-child, td:first-child,
+    th:nth-child(2), td:nth-child(2) {
+      text-align: left;
+    }
+
+    th {
+      color: var(--muted);
+      font-weight: 700;
+      background: rgba(236, 230, 218, .72);
+    }
+
+    .up { color: var(--red); }
+    .down { color: var(--green); }
+    .flat { color: var(--muted); }
+
+    .chart {
+      height: 320px;
+      width: 100%;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .emotion {
+      display: grid;
+      grid-template-columns: 160px minmax(0, 1fr);
+      gap: 18px;
+      align-items: center;
+    }
+
+    .gauge {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: conic-gradient(var(--red) calc(var(--score) * 1%), var(--panel-2) 0);
+      position: relative;
+    }
+
+    .gauge::after {
+      content: "";
+      position: absolute;
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      background: var(--panel);
+      border: 1px solid var(--line);
+    }
+
+    .gauge strong {
+      position: relative;
+      z-index: 1;
+      font: 800 42px/1 Georgia, serif;
+    }
+
+    .bars {
+      display: grid;
+      gap: 10px;
+      font-family: "Microsoft YaHei", sans-serif;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 74px minmax(0, 1fr) 52px;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .bar {
+      height: 10px;
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .bar i {
+      display: block;
+      height: 100%;
+      width: var(--w);
+      background: var(--blue);
+    }
+
+    footer {
+      color: var(--muted);
+      font: 13px/1.6 "Microsoft YaHei", sans-serif;
+      margin-top: 24px;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+    }
+
+    @media (max-width: 1080px) {
+      .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .layout, .split { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 700px) {
+      .shell { width: min(100vw - 18px, 1440px); padding-top: 14px; }
+      header { grid-template-columns: 1fr; }
+      .stamp { min-width: 0; width: 100%; }
+      .metrics { grid-template-columns: 1fr; }
+      .metric { min-height: 104px; padding: 14px; }
+      .value { font-size: 28px; }
+      .emotion { grid-template-columns: 1fr; }
+      .chart { height: 280px; }
+      h2 { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div>
+        <div class="kicker">DAILY A-SHARE MARKET BRIEF</div>
+        <h1>A股每日复盘</h1>
+      </div>
+      <div class="stamp">
+        <span>交易日</span>
+        <strong>{{ trade_date }}</strong>
+      </div>
+    </header>
+
+    <section class="grid metrics" id="metrics"></section>
+
+    <section class="grid layout">
+      <div class="panel">
+        <h2>关键指数 <span>宽基与风格观察</span></h2>
+        <div id="indexChart" class="chart"></div>
+      </div>
+      <div class="panel">
+        <h2>市场情绪 <span>内部复盘评分</span></h2>
+        <div class="emotion">
+          <div class="gauge" id="gauge"><strong id="score">--</strong></div>
+          <div class="bars" id="emotionBars"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid layout">
+      <div class="panel">
+        <h2>行业板块涨幅榜 <span>东方财富行业分类</span></h2>
+        <div class="table-wrap"><table id="industryTop"></table></div>
+      </div>
+      <div class="panel">
+        <h2>行业板块跌幅榜 <span>风险集中处</span></h2>
+        <div class="table-wrap"><table id="industryBottom"></table></div>
+      </div>
+    </section>
+
+    <section class="panel grid">
+      <h2>概念热度 <span>前 20 个概念板块</span></h2>
+      <div id="conceptChart" class="chart"></div>
+    </section>
+
+    <section class="grid split">
+      <div class="panel">
+        <h2>涨停板 <span>按涨跌停规则近似识别</span></h2>
+        <div class="table-wrap"><table id="limitUps"></table></div>
+      </div>
+      <div class="panel">
+        <h2>炸板与跌停 <span>情绪退潮线索</span></h2>
+        <div class="table-wrap"><table id="riskTable"></table></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>板块宽度 <span>上涨占比越高，内部扩散越好</span></h2>
+      <div class="table-wrap"><table id="boardStats"></table></div>
+    </section>
+
+    <footer>
+      数据来自东方财富延迟行情接口；“微盘股代理”为按流通市值排序后最小样本的中位涨跌幅，不等同于任何商业指数。
+      自动化建议在北京时间 16:15 后运行，避免收盘后数据尚未完全刷新。
+    </footer>
+  </div>
+
+  <script>
+    const report = {{ report_json }};
+    const fmt = new Intl.NumberFormat("zh-CN", { maximumFractionDigits: 2 });
+    const signed = (value) => value == null ? "--" : `${value > 0 ? "+" : ""}${fmt.format(value)}%`;
+    const cls = (value) => value > 0 ? "up" : value < 0 ? "down" : "flat";
+
+    function metric(label, value, sub, tone) {
+      return `<div class="panel metric">
+        <div class="label">${label}</div>
+        <div>
+          <div class="value ${tone || ""}">${value}</div>
+          <div class="sub">${sub || ""}</div>
+        </div>
+      </div>`;
+    }
+
+    function renderMetrics() {
+      const s = report.summary;
+      const micro = report.microcap_proxy;
+      document.getElementById("metrics").innerHTML = [
+        metric("情绪评分", s.emotion_score, "0-100，越高越强", s.emotion_score >= 55 ? "up" : "down"),
+        metric("上涨 / 下跌", `${s.advancers} / ${s.decliners}`, `平盘 ${s.flat} 家`),
+        metric("涨停 / 跌停", `${s.limit_up_count} / ${s.limit_down_count}`, `炸板 ${s.broken_limit_count} 家`),
+        metric("全市场成交额", fmt.format(s.total_amount_yi), `单位：亿元；${s.stock_count} 只股票样本`),
+        metric("微盘股代理", signed(micro.median_pct), `${micro.sample_size} 只样本中位数`, cls(micro.median_pct)),
+        metric("生成时间", new Date(s.generated_at).toLocaleTimeString("zh-CN", { hour12: false }), s.source)
+      ].join("");
+    }
+
+    function renderTable(id, columns, rows) {
+      const head = `<thead><tr>${columns.map(col => `<th>${col[0]}</th>`).join("")}</tr></thead>`;
+      const body = rows.map(row => `<tr>${columns.map(col => {
+        const value = col[1](row);
+        return `<td>${value}</td>`;
+      }).join("")}</tr>`).join("");
+      document.getElementById(id).innerHTML = `${head}<tbody>${body}</tbody>`;
+    }
+
+    function renderTables() {
+      const sectorCols = [
+        ["代码", r => r.code],
+        ["名称", r => r.name],
+        ["涨跌幅", r => `<span class="${cls(r.pct)}">${signed(r.pct)}</span>`],
+        ["成交额", r => `${fmt.format(r.amount_yi)} 亿`],
+        ["上涨/下跌", r => `${r.up_count}/${r.down_count}`],
+        ["领涨股", r => r.lead_stock || "--"],
+        ["领涨幅", r => `<span class="${cls(r.lead_stock_pct)}">${signed(r.lead_stock_pct)}</span>`]
+      ];
+      renderTable("industryTop", sectorCols, report.industry_top.slice(0, 10));
+      renderTable("industryBottom", sectorCols, report.industry_bottom.slice(0, 10));
+
+      const stockCols = [
+        ["代码", r => r.code],
+        ["名称", r => r.name],
+        ["涨跌幅", r => `<span class="${cls(r.pct)}">${signed(r.pct)}</span>`],
+        ["价格", r => r.price == null ? "--" : fmt.format(r.price)],
+        ["成交额", r => `${fmt.format(r.amount_yi)} 亿`],
+        ["换手", r => r.turnover == null ? "--" : `${fmt.format(r.turnover)}%`]
+      ];
+      renderTable("limitUps", stockCols, report.limit_ups.slice(0, 30));
+      renderTable("riskTable", stockCols, [...report.broken_limits.slice(0, 15), ...report.limit_downs.slice(0, 15)]);
+
+      const boardCols = [
+        ["板块", r => r.name],
+        ["样本数", r => r.count],
+        ["上涨", r => r.advancers],
+        ["下跌", r => r.decliners],
+        ["上涨占比", r => `<span class="${cls(r.advance_ratio - 50)}">${fmt.format(r.advance_ratio)}%</span>`],
+        ["涨停数", r => r.limit_ups]
+      ];
+      renderTable("boardStats", boardCols, report.board_stats);
+    }
+
+    function renderEmotion() {
+      const s = report.summary;
+      document.getElementById("score").textContent = s.emotion_score;
+      document.getElementById("gauge").style.setProperty("--score", s.emotion_score);
+      const total = Math.max(s.stock_count, 1);
+      const rows = [
+        ["上涨占比", s.advancers / total * 100],
+        ["下跌占比", s.decliners / total * 100],
+        ["指数红盘", s.positive_index_count / Math.max(s.index_count, 1) * 100],
+        ["炸板压力", s.broken_limit_count / Math.max(s.limit_up_count + s.broken_limit_count, 1) * 100]
+      ];
+      document.getElementById("emotionBars").innerHTML = rows.map(([name, value]) => `
+        <div class="bar-row">
+          <span>${name}</span>
+          <span class="bar"><i style="--w:${Math.min(100, value)}%"></i></span>
+          <strong>${fmt.format(value)}%</strong>
+        </div>
+      `).join("");
+    }
+
+    function renderCharts() {
+      const compact = window.matchMedia("(max-width: 700px)").matches;
+      const indexChart = echarts.init(document.getElementById("indexChart"));
+      const indexRows = report.indices.slice().reverse();
+      indexChart.setOption({
+        animation: false,
+        grid: { left: 78, right: compact ? 10 : 22, top: 14, bottom: 28 },
+        tooltip: { trigger: "axis" },
+        xAxis: { type: "value", axisLabel: { formatter: "{value}%" } },
+        yAxis: { type: "category", data: indexRows.map(i => i.name) },
+        series: [{
+          type: "bar",
+          data: indexRows.map(i => ({ value: i.pct, itemStyle: { color: i.pct >= 0 ? "#c64232" : "#14866d" } })),
+          barWidth: 18,
+          label: {
+            show: !compact,
+            position: "right",
+            formatter: (item) => signed(item.value)
+          }
+        }]
+      });
+
+      const concepts = report.concept_top.slice().reverse();
+      const conceptChart = echarts.init(document.getElementById("conceptChart"));
+      conceptChart.setOption({
+        animation: false,
+        grid: { left: 90, right: 22, top: 12, bottom: 20 },
+        tooltip: { trigger: "axis" },
+        xAxis: { type: "value", axisLabel: { formatter: "{value}%" } },
+        yAxis: { type: "category", data: concepts.map(i => i.name) },
+        series: [{
+          type: "bar",
+          data: concepts.map(i => ({ value: i.pct, itemStyle: { color: i.pct >= 0 ? "#c64232" : "#14866d" } })),
+          barWidth: 12
+        }]
+      });
+
+      window.addEventListener("resize", () => {
+        indexChart.resize();
+        conceptChart.resize();
+      });
+    }
+
+    renderMetrics();
+    renderEmotion();
+    renderTables();
+    renderCharts();
+  </script>
+</body>
+</html>

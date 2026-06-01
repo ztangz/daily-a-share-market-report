@@ -1,0 +1,5 @@
+data/raw/
+data/market.db
+reports/qa-*.png
+__pycache__/
+*.pyc
