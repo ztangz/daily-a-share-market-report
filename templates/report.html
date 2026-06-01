@@ -311,7 +311,7 @@
 
     <section class="grid layout">
       <div class="panel">
-        <h2>行业板块涨幅榜 <span>东方财富行业分类</span></h2>
+        <h2>行业板块涨幅榜 <span>同花顺行业板块</span></h2>
         <div class="table-wrap"><table id="industryTop"></table></div>
       </div>
       <div class="panel">
@@ -418,11 +418,13 @@
 
     function renderTables() {
       const sectorCols = [
-        ["代码", r => r.code],
-        ["名称", r => r.name],
+        ["排名", r => r.rank],
+        ["行业", r => r.name],
         ["涨跌幅", r => `<span class="${cls(r.pct)}">${signed(r.pct)}</span>`],
-        ["成交额", r => `${fmt.format(r.amount_yi)} 亿`],
-        ["上涨/下跌", r => `${r.up_count}/${r.down_count}`],
+        ["流入", r => `${fmt.format(r.inflow_yi)} 亿`],
+        ["流出", r => `${fmt.format(r.outflow_yi)} 亿`],
+        ["净额", r => `<span class="${cls(r.net_inflow_yi)}">${fmt.format(r.net_inflow_yi)} 亿</span>`],
+        ["公司数", r => r.stock_count],
         ["领涨股", r => r.lead_stock || "--"],
         ["领涨幅", r => `<span class="${cls(r.lead_stock_pct)}">${signed(r.lead_stock_pct)}</span>`]
       ];

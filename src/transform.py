@@ -184,6 +184,7 @@ def process_snapshot(raw: dict[str, Any], trade_date: str, now: datetime) -> dic
     }
     summary["emotion_score"] = emotion_score(summary)
     ths_fund_flows = raw.get("ths_fund_flows") or {"industry": [], "concept": []}
+    ths_industries = ths_fund_flows.get("industry", [])
     limit_time_pool = raw.get("limit_time_pool") or []
     futures_rankings = raw.get("futures_rankings") or {"today": [], "three_day": [], "seven_day": []}
 
@@ -198,8 +199,8 @@ def process_snapshot(raw: dict[str, Any], trade_date: str, now: datetime) -> dic
             "industry_outflow": sorted(ths_fund_flows.get("industry", []), key=lambda item: item["net_inflow_yi"] if item["net_inflow_yi"] is not None else 999)[:10],
             "concept_outflow": sorted(ths_fund_flows.get("concept", []), key=lambda item: item["net_inflow_yi"] if item["net_inflow_yi"] is not None else 999)[:10],
         },
-        "industry_top": sorted(industries, key=lambda item: item["pct"] if item["pct"] is not None else -999, reverse=True)[:15],
-        "industry_bottom": sorted(industries, key=lambda item: item["pct"] if item["pct"] is not None else 999)[:10],
+        "industry_top": sorted(ths_industries, key=lambda item: item["pct"] if item["pct"] is not None else -999, reverse=True)[:15],
+        "industry_bottom": sorted(ths_industries, key=lambda item: item["pct"] if item["pct"] is not None else 999)[:10],
         "concept_top": sorted(concepts, key=lambda item: item["pct"] if item["pct"] is not None else -999, reverse=True)[:20],
         "limit_time_pool": sorted(limit_time_pool, key=lambda item: item.get("first_limit_time") or "99:99:99")[:80],
         "futures_rankings": futures_rankings,
