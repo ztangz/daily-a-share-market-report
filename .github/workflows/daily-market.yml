@@ -2,9 +2,6 @@ name: Daily A-share Market Report
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
   schedule:
     # GitHub cron uses UTC. This is 16:15 in Asia/Shanghai.
     - cron: "15 8 * * 1-5"
@@ -44,8 +41,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data reports site
-          git diff --cached --quiet || git commit -m "Update daily market report"
-          git push
+          if ! git diff --cached --quiet; then
+            git commit -m "Update daily market report"
+            git pull --rebase origin main
+            git push
+          fi
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
