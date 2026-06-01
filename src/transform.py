@@ -183,17 +183,27 @@ def process_snapshot(raw: dict[str, Any], trade_date: str, now: datetime) -> dic
         "positive_index_count": sum(1 for item in indices if (item["pct"] or 0) > 0),
     }
     summary["emotion_score"] = emotion_score(summary)
+    ths_fund_flows = raw.get("ths_fund_flows") or {"industry": [], "concept": []}
+    limit_time_pool = raw.get("limit_time_pool") or []
+    futures_rankings = raw.get("futures_rankings") or {"today": [], "three_day": [], "seven_day": []}
 
     return {
         "summary": summary,
         "indices": indices,
         "microcap_proxy": percentile_proxy(stocks),
         "board_stats": sorted(board_stats.values(), key=lambda item: item["advance_ratio"], reverse=True),
+        "ths_fund_flows": {
+            "industry_inflow": sorted(ths_fund_flows.get("industry", []), key=lambda item: item["net_inflow_yi"] if item["net_inflow_yi"] is not None else -999, reverse=True)[:20],
+            "concept_inflow": sorted(ths_fund_flows.get("concept", []), key=lambda item: item["net_inflow_yi"] if item["net_inflow_yi"] is not None else -999, reverse=True)[:20],
+            "industry_outflow": sorted(ths_fund_flows.get("industry", []), key=lambda item: item["net_inflow_yi"] if item["net_inflow_yi"] is not None else 999)[:10],
+            "concept_outflow": sorted(ths_fund_flows.get("concept", []), key=lambda item: item["net_inflow_yi"] if item["net_inflow_yi"] is not None else 999)[:10],
+        },
         "industry_top": sorted(industries, key=lambda item: item["pct"] if item["pct"] is not None else -999, reverse=True)[:15],
         "industry_bottom": sorted(industries, key=lambda item: item["pct"] if item["pct"] is not None else 999)[:10],
         "concept_top": sorted(concepts, key=lambda item: item["pct"] if item["pct"] is not None else -999, reverse=True)[:20],
+        "limit_time_pool": sorted(limit_time_pool, key=lambda item: item.get("first_limit_time") or "99:99:99")[:80],
+        "futures_rankings": futures_rankings,
         "limit_ups": sorted(limit_ups, key=lambda item: item["pct"] or 0, reverse=True)[:80],
         "limit_downs": sorted(limit_downs, key=lambda item: item["pct"] or 0)[:50],
         "broken_limits": sorted(broken_limits, key=lambda item: item["pct"] or 0, reverse=True)[:50],
     }
-

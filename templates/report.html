@@ -187,6 +187,12 @@
       gap: 16px;
     }
 
+    .triple {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
     .emotion {
       display: grid;
       grid-template-columns: 160px minmax(0, 1fr);
@@ -258,7 +264,7 @@
 
     @media (max-width: 1080px) {
       .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .layout, .split { grid-template-columns: 1fr; }
+      .layout, .split, .triple { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 700px) {
@@ -314,6 +320,17 @@
       </div>
     </section>
 
+    <section class="grid split">
+      <div class="panel">
+        <h2>资金聚集：行业 <span>同花顺行业资金流，按净额排序</span></h2>
+        <div class="table-wrap"><table id="thsIndustryFunds"></table></div>
+      </div>
+      <div class="panel">
+        <h2>资金聚集：概念 <span>同花顺概念资金流，按净额排序</span></h2>
+        <div class="table-wrap"><table id="thsConceptFunds"></table></div>
+      </div>
+    </section>
+
     <section class="panel grid">
       <h2>概念热度 <span>前 20 个概念板块</span></h2>
       <div id="conceptChart" class="chart"></div>
@@ -327,6 +344,26 @@
       <div class="panel">
         <h2>炸板与跌停 <span>情绪退潮线索</span></h2>
         <div class="table-wrap"><table id="riskTable"></table></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>涨停时间榜 <span>按首次封板时间排序，补充同花顺行业与概念</span></h2>
+      <div class="table-wrap"><table id="limitTimePool"></table></div>
+    </section>
+
+    <section class="grid triple">
+      <div class="panel">
+        <h2>期货今日涨幅榜 <span>主连/主力合约优先</span></h2>
+        <div class="table-wrap"><table id="futuresToday"></table></div>
+      </div>
+      <div class="panel">
+        <h2>期货 3 日涨幅榜 <span>按近 3 个交易日涨幅</span></h2>
+        <div class="table-wrap"><table id="futuresThreeDay"></table></div>
+      </div>
+      <div class="panel">
+        <h2>期货 7 日涨幅榜 <span>按近 7 个交易日涨幅</span></h2>
+        <div class="table-wrap"><table id="futuresSevenDay"></table></div>
       </div>
     </section>
 
@@ -392,6 +429,19 @@
       renderTable("industryTop", sectorCols, report.industry_top.slice(0, 10));
       renderTable("industryBottom", sectorCols, report.industry_bottom.slice(0, 10));
 
+      const fundCols = [
+        ["排名", r => r.rank],
+        ["名称", r => r.name],
+        ["涨跌幅", r => `<span class="${cls(r.pct)}">${signed(r.pct)}</span>`],
+        ["流入", r => `${fmt.format(r.inflow_yi)} 亿`],
+        ["流出", r => `${fmt.format(r.outflow_yi)} 亿`],
+        ["净额", r => `<span class="${cls(r.net_inflow_yi)}">${fmt.format(r.net_inflow_yi)} 亿</span>`],
+        ["领涨股", r => r.lead_stock || "--"],
+        ["领涨幅", r => `<span class="${cls(r.lead_stock_pct)}">${signed(r.lead_stock_pct)}</span>`]
+      ];
+      renderTable("thsIndustryFunds", fundCols, (report.ths_fund_flows?.industry_inflow || []).slice(0, 12));
+      renderTable("thsConceptFunds", fundCols, (report.ths_fund_flows?.concept_inflow || []).slice(0, 12));
+
       const stockCols = [
         ["代码", r => r.code],
         ["名称", r => r.name],
@@ -402,6 +452,31 @@
       ];
       renderTable("limitUps", stockCols, report.limit_ups.slice(0, 30));
       renderTable("riskTable", stockCols, [...report.broken_limits.slice(0, 15), ...report.limit_downs.slice(0, 15)]);
+
+      const limitTimeCols = [
+        ["首次封板", r => r.first_limit_time || "--"],
+        ["代码", r => r.code],
+        ["名称", r => r.name],
+        ["涨幅", r => `<span class="${cls(r.pct)}">${signed(r.pct)}</span>`],
+        ["行业", r => r.ths_industry || r.eastmoney_industry || "--"],
+        ["概念", r => (r.concepts || []).slice(0, 4).join(" / ") || "--"],
+        ["连板", r => r.consecutive_boards],
+        ["开板", r => r.open_count],
+        ["封单额", r => `${fmt.format(r.sealed_fund_yi)} 亿`]
+      ];
+      renderTable("limitTimePool", limitTimeCols, (report.limit_time_pool || []).slice(0, 60));
+
+      const futuresCols = [
+        ["代码", r => r.code],
+        ["名称", r => r.name],
+        ["最新", r => r.price == null ? "--" : fmt.format(r.price)],
+        ["今日", r => `<span class="${cls(r.pct_today)}">${signed(r.pct_today)}</span>`],
+        ["3日", r => `<span class="${cls(r.pct_3d)}">${signed(r.pct_3d)}</span>`],
+        ["7日", r => `<span class="${cls(r.pct_7d)}">${signed(r.pct_7d)}</span>`]
+      ];
+      renderTable("futuresToday", futuresCols, (report.futures_rankings?.today || []).slice(0, 15));
+      renderTable("futuresThreeDay", futuresCols, (report.futures_rankings?.three_day || []).slice(0, 15));
+      renderTable("futuresSevenDay", futuresCols, (report.futures_rankings?.seven_day || []).slice(0, 15));
 
       const boardCols = [
         ["板块", r => r.name],

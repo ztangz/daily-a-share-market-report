@@ -33,7 +33,7 @@ def main() -> None:
     now = datetime.now(CN_TZ)
     trade_date = args.date or now.date().isoformat()
 
-    raw = fetch_snapshot(now)
+    raw = fetch_snapshot(now, trade_date)
     processed = process_snapshot(raw, trade_date, now)
     validate_processed(processed)
 

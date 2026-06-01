@@ -13,6 +13,8 @@ from .config import (
     SECTOR_FIELDS,
 )
 from .http_client import fetch_json
+from .fetch_ths import enrich_limit_pool_with_ths, fetch_limit_time_pool, fetch_ths_fund_flows
+from .fetch_futures import fetch_futures_rankings
 
 
 def _items(payload: dict[str, Any]) -> list[dict[str, Any]]:
@@ -104,12 +106,16 @@ def fetch_concept_sectors() -> list[dict[str, Any]]:
     return fetch_clist_all(CONCEPT_FS, SECTOR_FIELDS, page_size=100)
 
 
-def fetch_snapshot(now: datetime) -> dict[str, Any]:
+def fetch_snapshot(now: datetime, trade_date: str) -> dict[str, Any]:
+    limit_time_pool = fetch_limit_time_pool(trade_date)
     return {
         "fetched_at": now.isoformat(),
-        "source": "eastmoney_push2delay",
+        "source": "eastmoney_push2delay+ths",
         "indices": fetch_indices(),
         "stocks": fetch_a_shares(),
         "industry_sectors": fetch_industry_sectors(),
         "concept_sectors": fetch_concept_sectors(),
+        "ths_fund_flows": fetch_ths_fund_flows(),
+        "limit_time_pool": enrich_limit_pool_with_ths(limit_time_pool[:120]),
+        "futures_rankings": fetch_futures_rankings(),
     }
