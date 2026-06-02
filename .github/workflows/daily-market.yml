@@ -5,6 +5,9 @@ on:
   schedule:
     # GitHub cron uses UTC. This is 16:15 in Asia/Shanghai.
     - cron: "15 8 * * 1-5"
+    # Backup triggers in case GitHub drops or delays one scheduled run.
+    - cron: "37 8 * * 1-5"
+    - cron: "17 9 * * 1-5"
 
 permissions:
   contents: write
