@@ -1,7 +1,7 @@
 {
   "summary": {
     "trade_date": "2026-06-09",
-    "generated_at": "2026-06-09T19:29:41.341065+08:00",
+    "generated_at": "2026-06-09T19:43:14.404763+08:00",
     "source": "eastmoney_push2delay+ths",
     "stock_count": 5532,
     "advancers": 3216,
@@ -342,7 +342,7 @@
         "lead_stock_price": 24.41
       },
       {
-        "rank": 49,
+        "rank": 50,
         "category": "industry",
         "name": "银行",
         "index_price": 1306.79,
@@ -1293,20 +1293,6 @@
     {
       "rank": 49,
       "category": "industry",
-      "name": "银行",
-      "index_price": 1306.79,
-      "pct": 0.59,
-      "inflow_yi": 127.55,
-      "outflow_yi": 107.27,
-      "net_inflow_yi": 20.28,
-      "stock_count": 84,
-      "lead_stock": "宁波银行",
-      "lead_stock_pct": 4.13,
-      "lead_stock_price": 32.29
-    },
-    {
-      "rank": 50,
-      "category": "industry",
       "name": "纺织制造",
       "index_price": 2229.47,
       "pct": 0.59,
@@ -1317,6 +1303,20 @@
       "lead_stock": "聚杰微纤",
       "lead_stock_pct": 5.6,
       "lead_stock_price": 64.54
+    },
+    {
+      "rank": 50,
+      "category": "industry",
+      "name": "银行",
+      "index_price": 1306.79,
+      "pct": 0.59,
+      "inflow_yi": 127.55,
+      "outflow_yi": 107.27,
+      "net_inflow_yi": 20.28,
+      "stock_count": 84,
+      "lead_stock": "宁波银行",
+      "lead_stock_pct": 4.13,
+      "lead_stock_price": 32.29
     },
     {
       "rank": 48,
