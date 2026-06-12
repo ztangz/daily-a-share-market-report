@@ -1,7 +1,7 @@
 {
   "summary": {
     "trade_date": "2026-06-12",
-    "generated_at": "2026-06-12T19:51:28.143527+08:00",
+    "generated_at": "2026-06-12T20:01:28.422794+08:00",
     "source": "eastmoney_push2delay+ths",
     "stock_count": 5533,
     "advancers": 3708,
@@ -1048,7 +1048,7 @@
         "lead_stock_price": 13.72
       },
       {
-        "rank": 19,
+        "rank": 20,
         "category": "concept",
         "name": "成飞概念",
         "index_price": 1873.17,
@@ -2043,17 +2043,8 @@
       "consecutive_boards": 1,
       "eastmoney_industry": "汽车零部",
       "sealed_fund_yi": 0.54,
-      "ths_industry": "汽车零部件",
-      "concepts": [
-        "5G",
-        "汽车电子",
-        "车联网(车路协同)",
-        "比亚迪概念",
-        "长安汽车概念",
-        "储能",
-        "飞行汽车(eVTOL)",
-        "富士康概念"
-      ]
+      "ths_industry": "汽车零部",
+      "concepts": []
     },
     {
       "code": "002742",
