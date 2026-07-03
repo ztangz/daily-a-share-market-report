@@ -1,7 +1,7 @@
 {
   "summary": {
     "trade_date": "2026-07-03",
-    "generated_at": "2026-07-03T19:14:55.257397+08:00",
+    "generated_at": "2026-07-03T19:42:17.890712+08:00",
     "source": "eastmoney_push2delay+ths",
     "stock_count": 5535,
     "advancers": 3527,
@@ -1589,7 +1589,7 @@
       "pct": 3.34,
       "change": 77.12,
       "amount_yi": 878.34,
-      "turnover": 3.41,
+      "turnover": 3.46,
       "net_inflow_yi": 52.27,
       "up_count": 104,
       "down_count": 20,
@@ -1694,7 +1694,7 @@
       "pct": 2.77,
       "change": 22.27,
       "amount_yi": 26.32,
-      "turnover": 2.62,
+      "turnover": 2.4,
       "net_inflow_yi": -0.23,
       "up_count": 54,
       "down_count": 1,
