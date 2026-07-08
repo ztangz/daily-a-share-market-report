@@ -1,7 +1,7 @@
 {
   "summary": {
     "trade_date": "2026-07-08",
-    "generated_at": "2026-07-08T18:37:39.734862+08:00",
+    "generated_at": "2026-07-08T19:18:42.208873+08:00",
     "source": "eastmoney_push2delay+ths",
     "stock_count": 5535,
     "advancers": 1533,
@@ -1484,7 +1484,7 @@
       "pct": 3.32,
       "change": 867.22,
       "amount_yi": 95.07,
-      "turnover": 10.59,
+      "turnover": 3.16,
       "net_inflow_yi": -2.53,
       "up_count": 4,
       "down_count": 2,
@@ -1679,7 +1679,7 @@
       "pct": 1.98,
       "change": 373.08,
       "amount_yi": 84.37,
-      "turnover": 10.11,
+      "turnover": 6.82,
       "net_inflow_yi": -1.62,
       "up_count": 3,
       "down_count": 2,
@@ -1724,7 +1724,7 @@
       "pct": 1.89,
       "change": 1626.26,
       "amount_yi": 630.72,
-      "turnover": 10.79,
+      "turnover": 4.8,
       "net_inflow_yi": -29.95,
       "up_count": 19,
       "down_count": 15,
@@ -1941,7 +1941,7 @@
       "turnover": 29.607534408569336,
       "first_limit_time": "09:30:33",
       "last_limit_time": "15:00:00",
-      "open_count": 8,
+      "open_count": 9,
       "consecutive_boards": 2,
       "eastmoney_industry": "元件",
       "sealed_fund_yi": 0.02,
@@ -4764,7 +4764,7 @@
       "prev_close": 44.02,
       "total_market_cap": 7747200000.0,
       "float_market_cap": 3016410088.0,
-      "pb": 4.5,
+      "pb": 4.61,
       "pe_ttm": 59.14
     },
     {
