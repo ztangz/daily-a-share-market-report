@@ -1,7 +1,7 @@
 {
   "summary": {
     "trade_date": "2026-07-09",
-    "generated_at": "2026-07-09T19:21:35.376649+08:00",
+    "generated_at": "2026-07-09T19:35:55.053296+08:00",
     "source": "eastmoney_push2delay+ths",
     "stock_count": 5536,
     "advancers": 2382,
@@ -512,7 +512,7 @@
     ],
     "concept_inflow": [
       {
-        "rank": 21,
+        "rank": 20,
         "category": "concept",
         "name": "芯片概念",
         "index_price": 5551.85,
@@ -722,7 +722,7 @@
         "lead_stock_price": 108.01
       },
       {
-        "rank": 20,
+        "rank": 21,
         "category": "concept",
         "name": "AI眼镜",
         "index_price": 2902.09,
@@ -1454,7 +1454,7 @@
       "pct": 7.05,
       "change": 294.77,
       "amount_yi": 1663.75,
-      "turnover": 10.53,
+      "turnover": 10.22,
       "net_inflow_yi": 109.04,
       "up_count": 50,
       "down_count": 0,
@@ -1469,7 +1469,7 @@
       "pct": 7.03,
       "change": 77.35,
       "amount_yi": 8807.62,
-      "turnover": 3.93,
+      "turnover": 3.95,
       "net_inflow_yi": 464.85,
       "up_count": 97,
       "down_count": 2,
@@ -1544,7 +1544,7 @@
       "pct": 5.35,
       "change": 59.45,
       "amount_yi": 9022.55,
-      "turnover": 4.21,
+      "turnover": 4.31,
       "net_inflow_yi": 336.73,
       "up_count": 238,
       "down_count": 20,
@@ -1574,7 +1574,7 @@
       "pct": 4.91,
       "change": 151.73,
       "amount_yi": 1276.44,
-      "turnover": 8.67,
+      "turnover": 8.58,
       "net_inflow_yi": 60.47,
       "up_count": 43,
       "down_count": 2,
@@ -1724,7 +1724,7 @@
       "pct": 4.18,
       "change": 87.8,
       "amount_yi": 1236.92,
-      "turnover": 5.82,
+      "turnover": 5.81,
       "net_inflow_yi": 62.01,
       "up_count": 33,
       "down_count": 6,
