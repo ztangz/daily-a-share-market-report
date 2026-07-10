@@ -1,7 +1,7 @@
 {
   "summary": {
     "trade_date": "2026-07-10",
-    "generated_at": "2026-07-10T19:30:37.467509+08:00",
+    "generated_at": "2026-07-10T20:08:59.851984+08:00",
     "source": "eastmoney_push2delay+ths",
     "stock_count": 5537,
     "advancers": 3512,
@@ -512,7 +512,7 @@
     ],
     "concept_inflow": [
       {
-        "rank": 12,
+        "rank": 11,
         "category": "concept",
         "name": "创新药",
         "index_price": 1241.33,
@@ -680,7 +680,7 @@
         "lead_stock_price": 5.8
       },
       {
-        "rank": 11,
+        "rank": 12,
         "category": "concept",
         "name": "小红书概念",
         "index_price": 1401.39,
@@ -1484,7 +1484,7 @@
       "pct": 4.39,
       "change": 51.81,
       "amount_yi": 322.87,
-      "turnover": 3.48,
+      "turnover": 3.46,
       "net_inflow_yi": 11.65,
       "up_count": 36,
       "down_count": 3,
@@ -1634,7 +1634,7 @@
       "pct": 3.38,
       "change": 207.85,
       "amount_yi": 34.92,
-      "turnover": 13.46,
+      "turnover": 11.84,
       "net_inflow_yi": -3.64,
       "up_count": 2,
       "down_count": 0,
@@ -1664,7 +1664,7 @@
       "pct": 3.33,
       "change": 20.33,
       "amount_yi": 162.21,
-      "turnover": 3.28,
+      "turnover": 3.05,
       "net_inflow_yi": 5.31,
       "up_count": 137,
       "down_count": 9,
@@ -1724,7 +1724,7 @@
       "pct": 3.2,
       "change": 39.73,
       "amount_yi": 237.41,
-      "turnover": 4.3,
+      "turnover": 4.29,
       "net_inflow_yi": 10.54,
       "up_count": 52,
       "down_count": 5,
