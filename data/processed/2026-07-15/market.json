@@ -1,7 +1,7 @@
 {
   "summary": {
     "trade_date": "2026-07-15",
-    "generated_at": "2026-07-15T18:13:57.163520+08:00",
+    "generated_at": "2026-07-15T18:26:21.366837+08:00",
     "source": "eastmoney_push2delay+ths",
     "stock_count": 5537,
     "advancers": 3198,
@@ -1034,7 +1034,7 @@
         "lead_stock_price": 21.25
       },
       {
-        "rank": 46,
+        "rank": 47,
         "category": "concept",
         "name": "供销社",
         "index_price": 991.014,
@@ -5621,7 +5621,7 @@
       "prev_close": 26.04,
       "total_market_cap": 9219151445.0,
       "float_market_cap": 9219151445.0,
-      "pb": 2.7,
+      "pb": 2.72,
       "pe_ttm": 26.56
     },
     {
@@ -6263,7 +6263,7 @@
       "prev_close": 14.38,
       "total_market_cap": 4004168805.0,
       "float_market_cap": 4004168805.0,
-      "pb": 1.48,
+      "pb": 1.51,
       "pe_ttm": 27.08
     },
     {
