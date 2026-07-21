@@ -1,7 +1,7 @@
 {
   "summary": {
     "trade_date": "2026-07-21",
-    "generated_at": "2026-07-21T18:32:17.284890+08:00",
+    "generated_at": "2026-07-21T18:47:29.070722+08:00",
     "source": "eastmoney_push2delay+ths",
     "stock_count": 5540,
     "advancers": 2871,
@@ -4473,6 +4473,22 @@
         "pct_7d": 0.19
       },
       {
+        "code": "jmm",
+        "market": 114,
+        "name": "焦煤主连",
+        "price": 1275.0,
+        "pct_today": -0.43,
+        "change": -5.5,
+        "amount_yi": 593.53,
+        "high": 1280.0,
+        "low": 1233.0,
+        "open": 1270.0,
+        "prev_close": 1272.0,
+        "sina_symbol": "JM0",
+        "pct_3d": -0.95,
+        "pct_7d": 0.0
+      },
+      {
         "code": "pm",
         "market": 114,
         "name": "棕榈油主连",
@@ -4617,6 +4633,22 @@
         "pct_7d": -1.03
       },
       {
+        "code": "vm",
+        "market": 114,
+        "name": "PVC主连",
+        "price": 4587.0,
+        "pct_today": -0.43,
+        "change": -20.0,
+        "amount_yi": 311.13,
+        "high": 4680.0,
+        "low": 4545.0,
+        "open": 4671.0,
+        "prev_close": 4713.0,
+        "sina_symbol": "V0",
+        "pct_3d": -0.59,
+        "pct_7d": -1.11
+      },
+      {
         "code": "spm",
         "market": 113,
         "name": "纸浆主连",
@@ -4647,38 +4679,6 @@
         "sina_symbol": "EG0",
         "pct_3d": -2.64,
         "pct_7d": -1.51
-      },
-      {
-        "code": "bum",
-        "market": 113,
-        "name": "沥青主连",
-        "price": 4164.0,
-        "pct_today": -1.79,
-        "change": -76.0,
-        "amount_yi": 166.4,
-        "high": 4248.0,
-        "low": 4156.0,
-        "open": 4238.0,
-        "prev_close": 4291.0,
-        "sina_symbol": "BU0",
-        "pct_3d": -1.61,
-        "pct_7d": -1.55
-      },
-      {
-        "code": "SRM",
-        "market": 115,
-        "name": "白糖主连",
-        "price": 5169.0,
-        "pct_today": 0.31,
-        "change": 16.0,
-        "amount_yi": 168.73,
-        "high": 5182.0,
-        "low": 5147.0,
-        "open": 5162.0,
-        "prev_close": 5157.0,
-        "sina_symbol": "SR0",
-        "pct_3d": -0.55,
-        "pct_7d": -1.56
       }
     ]
   },
