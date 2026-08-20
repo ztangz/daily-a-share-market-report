@@ -1,7 +1,7 @@
 {
   "summary": {
     "trade_date": "2026-08-20",
-    "generated_at": "2026-08-20T16:53:12.534048+08:00",
+    "generated_at": "2026-08-20T17:15:00.813833+08:00",
     "source": "eastmoney_push2delay+ths",
     "stock_count": 5552,
     "advancers": 3916,
@@ -694,7 +694,7 @@
         "lead_stock_price": 39.73
       },
       {
-        "rank": 12,
+        "rank": 11,
         "category": "concept",
         "name": "阿尔茨海默概念",
         "index_price": 1333.54,
@@ -764,7 +764,7 @@
         "lead_stock_price": 34.06
       },
       {
-        "rank": 11,
+        "rank": 12,
         "category": "concept",
         "name": "流感",
         "index_price": 1525.39,
@@ -1454,7 +1454,7 @@
       "pct": 6.67,
       "change": 68.43,
       "amount_yi": 185.16,
-      "turnover": 5.08,
+      "turnover": 5.23,
       "net_inflow_yi": 13.43,
       "up_count": 29,
       "down_count": 2,
@@ -1589,7 +1589,7 @@
       "pct": 5.5,
       "change": 857.73,
       "amount_yi": 63.02,
-      "turnover": 23.11,
+      "turnover": 13.89,
       "net_inflow_yi": 1.68,
       "up_count": 5,
       "down_count": 1,
@@ -1619,7 +1619,7 @@
       "pct": 4.88,
       "change": 65.86,
       "amount_yi": 397.96,
-      "turnover": 4.08,
+      "turnover": 4.36,
       "net_inflow_yi": 25.03,
       "up_count": 64,
       "down_count": 6,
@@ -4869,8 +4869,8 @@
       "prev_close": 4.95,
       "total_market_cap": 6272112558.0,
       "float_market_cap": 6271576134.0,
-      "pb": 3.6,
-      "pe_ttm": -46.14
+      "pb": 3.62,
+      "pe_ttm": -49.49
     },
     {
       "code": "300841",
