@@ -1,7 +1,7 @@
 {
   "summary": {
     "trade_date": "2026-08-21",
-    "generated_at": "2026-08-21T16:54:25.120750+08:00",
+    "generated_at": "2026-08-21T17:18:08.290721+08:00",
     "source": "eastmoney_push2delay+ths",
     "stock_count": 5552,
     "advancers": 2407,
@@ -1469,7 +1469,7 @@
       "pct": 2.63,
       "change": 526.01,
       "amount_yi": 814.75,
-      "turnover": 2.64,
+      "turnover": 2.61,
       "net_inflow_yi": 67.84,
       "up_count": 54,
       "down_count": 16,
@@ -1604,7 +1604,7 @@
       "pct": 1.85,
       "change": 1106.04,
       "amount_yi": 42.26,
-      "turnover": 4.94,
+      "turnover": 22.17,
       "net_inflow_yi": -1.97,
       "up_count": 2,
       "down_count": 3,
@@ -1619,7 +1619,7 @@
       "pct": 1.82,
       "change": 88.77,
       "amount_yi": 445.47,
-      "turnover": 4.66,
+      "turnover": 4.67,
       "net_inflow_yi": 4.32,
       "up_count": 28,
       "down_count": 5,
@@ -1694,7 +1694,7 @@
       "pct": 1.6,
       "change": 9.9,
       "amount_yi": 313.37,
-      "turnover": 2.75,
+      "turnover": 9.3,
       "net_inflow_yi": 8.39,
       "up_count": 15,
       "down_count": 7,
@@ -4991,8 +4991,8 @@
       "prev_close": 13.21,
       "total_market_cap": 8433675638.0,
       "float_market_cap": 8428647865.0,
-      "pb": 4.73,
-      "pe_ttm": 50.92
+      "pb": 4.63,
+      "pe_ttm": 49.98
     },
     {
       "code": "603045",
@@ -5151,8 +5151,8 @@
       "prev_close": 6.43,
       "total_market_cap": 4372633585.0,
       "float_market_cap": 4372633585.0,
-      "pb": 1.16,
-      "pe_ttm": -69.12
+      "pb": 1.17,
+      "pe_ttm": -50.61
     },
     {
       "code": "002038",
@@ -5754,7 +5754,7 @@
       "total_market_cap": 5517113872.0,
       "float_market_cap": 5517113872.0,
       "pb": 1.03,
-      "pe_ttm": -17.83
+      "pe_ttm": -10.27
     },
     {
       "code": "600371",
