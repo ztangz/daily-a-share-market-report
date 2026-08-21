@@ -1,7 +1,7 @@
 {
   "summary": {
     "trade_date": "2026-08-21",
-    "generated_at": "2026-08-21T17:18:08.290721+08:00",
+    "generated_at": "2026-08-21T17:53:20.287902+08:00",
     "source": "eastmoney_push2delay+ths",
     "stock_count": 5552,
     "advancers": 2407,
@@ -2355,7 +2355,7 @@
       "price": 14.53,
       "pct": 9.992429733276367,
       "amount_yi": 4.71,
-      "turnover": 5.699938774108887,
+      "turnover": 5.699089050292969,
       "first_limit_time": "09:45:54",
       "last_limit_time": "10:41:57",
       "open_count": 3,
@@ -4990,7 +4990,7 @@
       "open": 13.42,
       "prev_close": 13.21,
       "total_market_cap": 8433675638.0,
-      "float_market_cap": 8428647865.0,
+      "float_market_cap": 8429904812.0,
       "pb": 4.63,
       "pe_ttm": 49.98
     },
