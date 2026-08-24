@@ -1,7 +1,7 @@
 {
   "summary": {
     "trade_date": "2026-08-24",
-    "generated_at": "2026-08-24T17:27:44.171534+08:00",
+    "generated_at": "2026-08-24T18:06:11.297155+08:00",
     "source": "eastmoney_push2delay+ths",
     "stock_count": 5552,
     "advancers": 1384,
@@ -5106,8 +5106,8 @@
       "prev_close": 77.75,
       "total_market_cap": 29137411926.0,
       "float_market_cap": 29137411926.0,
-      "pb": 11.89,
-      "pe_ttm": 177.58
+      "pb": 11.55,
+      "pe_ttm": 159.32
     },
     {
       "code": "603156",
@@ -5226,8 +5226,8 @@
       "prev_close": 31.55,
       "total_market_cap": 11388400000.0,
       "float_market_cap": 11388400000.0,
-      "pb": 10.03,
-      "pe_ttm": 212.07
+      "pb": 9.82,
+      "pe_ttm": 196.39
     },
     {
       "code": "603226",
